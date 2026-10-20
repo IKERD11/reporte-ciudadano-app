@@ -40,7 +40,7 @@ _flutter.buildConfig = {"engineRevision":"1527ae0ec577a4ef50e65f6fefcfc1326707d9
 // The stable build token keeps caching effective between visits to the same release.
 for (const build of _flutter.buildConfig.builds) {
   if (build.mainJsPath) {
-    build.mainJsPath += '?release="3956041637"';
+    build.mainJsPath += '?release=3956041637';
   }
 }
 _flutter.loader.load({config: {canvasKitBaseUrl: 'canvaskit/'}});
