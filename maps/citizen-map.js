@@ -153,8 +153,8 @@
     function updateZone() {
       if (!map?.isStyleLoaded()) return;
       const center = coordinate(options.point), radius = options.radiusKm;
-      const enabled = center && Number.isFinite(radius) && radius >= 1 && radius <= 10;
-      const signature = JSON.stringify([center, radius]);
+      const enabled = options.showZoneRadius === true && center && Number.isFinite(radius) && radius >= 1 && radius <= 10;
+      const signature = JSON.stringify([center, radius, options.showZoneRadius === true]);
       if (signature === lastZone && map.getSource('citizen-zone')) return;
       const coordinates = [];
       if (enabled) {

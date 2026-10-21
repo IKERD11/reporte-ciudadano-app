@@ -31601,8 +31601,8 @@ aIN:function aIN(a){this.a=a},
 Ii:function Ii(a){this.a=a},
 at3:function at3(){},
 at4:function at4(){},
-Ij(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o){return new A.XG(e,o,k,b,d,a,f,n,j,c,l,i,h,m,g,null)},
-XG:function XG(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p){var _=this
+Ij(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p){return new A.XG(e,p,k,b,d,a,f,n,j,o,c,l,i,h,m,g,null)},
+XG:function XG(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q){var _=this
 _.c=a
 _.d=b
 _.e=c
@@ -31618,7 +31618,8 @@ _.at=l
 _.ax=m
 _.ay=n
 _.ch=o
-_.a=p},
+_.CW=p
+_.a=q},
 at5:function at5(a){this.a=a},
 at6:function at6(a){this.a=a},
 bna(){var s,r,q=$.aRM(),p=J.jg(16,t.S)
@@ -116025,27 +116026,26 @@ $2(a,b){var s,r,q,p,o=null,n=this.a,m=n.CW==null?15.2:16,l=n.x,k=n.gaHp(),j=A.a5
 l=A.S(new A.aI(l,k,j),j.i("p.E"))
 j=n.CW
 if(j==null)j=n.dy.b
-s=n.fr?n.dy.c:o
-r=n.gaIU()
-m=A.Ij(!0,203,700,82,b.d,!0,r,o,j,!1,0,s,l,!1,m)
+s=n.gaIU()
+m=A.Ij(!0,203,700,82,b.d,!0,s,o,j,!1,0,o,l,!1,!1,m)
 l=A.br(19)
-s=t.p
-j=A.b([B.af7,A.cJ(A.axv(o,B.dK,!1,o,!0,B.Q,o,A.aVQ(),o,o,o,o,o,o,2,B.XJ,B.aw,!0,o,!0,o,!1,o,B.dB,o,o,o,o,o,o,o,o,1,o,o,!1,"\u2022",o,new A.aDd(n),o,n.gaao(),o,!1,o,o,!1,o,!0,o,B.hI,o,o,o,o,o,o,o,o,o,o,o,B.alh,!0,B.az,o,B.iz,o,o,o,o),1)],s)
-if(n.cx)j.push(B.afd)
-l=A.fT(o,A.zM(A.ce(o,A.bY(j,B.u,B.n,B.m,0),B.o,o,o,new A.bu(B.rY,o,o,l,B.vd,o,B.M),o,55,o,B.Vj,o,o,o)),o,o,20,75,17,o)
-j=n.Q
-q=j?B.R1:B.rY
+j=t.p
+r=A.b([B.af7,A.cJ(A.axv(o,B.dK,!1,o,!0,B.Q,o,A.aVQ(),o,o,o,o,o,o,2,B.XJ,B.aw,!0,o,!0,o,!1,o,B.dB,o,o,o,o,o,o,o,o,1,o,o,!1,"\u2022",o,new A.aDd(n),o,n.gaao(),o,!1,o,o,!1,o,!0,o,B.hI,o,o,o,o,o,o,o,o,o,o,o,B.alh,!0,B.az,o,B.iz,o,o,o,o),1)],j)
+if(n.cx)r.push(B.afd)
+l=A.fT(o,A.zM(A.ce(o,A.bY(r,B.u,B.n,B.m,0),B.o,o,o,new A.bu(B.rY,o,o,l,B.vd,o,B.M),o,55,o,B.Vj,o,o,o)),o,o,20,75,17,o)
+r=n.Q
+q=r?B.R1:B.rY
 p=A.br(18)
-m=A.b([m,l,A.fT(o,A.zM(A.ce(o,A.h8(o,o,new A.c8("filter",25,2.5,j?B.h:B.je,o),o,o,new A.aDe(n),o,o,"Filtrar incidentes"),B.o,o,o,new A.bu(q,o,o,p,B.vd,o,B.M),o,55,o,o,o,o,55)),o,o,o,18,17,o),A.fT(207,A.zM(A.c_(A.pO(A.aYP(B.MO,n.gaHb(),A.uq(o,B.h,o,o,o,o,o,B.dG,o,o,o,o,o,o,o,o,o),"Usar mi ubicaci\xf3n actual"),B.Jy,B.dk),54,54)),o,o,o,20,o,o)],s)
+m=A.b([m,l,A.fT(o,A.zM(A.ce(o,A.h8(o,o,new A.c8("filter",25,2.5,r?B.h:B.je,o),o,o,new A.aDe(n),o,o,"Filtrar incidentes"),B.o,o,o,new A.bu(q,o,o,p,B.vd,o,B.M),o,55,o,o,o,o,55)),o,o,o,18,17,o),A.fT(207,A.zM(A.c_(A.pO(A.aYP(B.MO,n.gaHb(),A.uq(o,B.h,o,o,o,o,o,B.dG,o,o,o,o,o,o,o,o,o),"Usar mi ubicaci\xf3n actual"),B.Jy,B.dk),54,54)),o,o,o,20,o,o)],j)
 if(n.f)m.push(B.abl)
 l=n.r
 if(l!=null)m.push(A.fT(o,A.zM(A.eL(!1,A.an(l+" Reintentar",o,o,o,o,o,o),o,o,o,o,o,o,new A.aDf(n),o,o)),o,o,18,18,130,o))
 l=n.z
 j=A.bk(a,B.c7,t.w).w
-s=n.x
-q=A.a5(s).i("aI<1>")
-k=A.S(new A.aI(s,k,q),q.i("p.E"))
-m.push(A.fT(-6,A.zM(new A.Rq(l,j.a.b,k,new A.aDg(n),r,n.db)),o,o,0,0,o,o))
+r=n.x
+q=A.a5(r).i("aI<1>")
+k=A.S(new A.aI(r,k,q),q.i("p.E"))
+m.push(A.fT(-6,A.zM(new A.Rq(l,j.a.b,k,new A.aDg(n),s,n.db)),o,o,0,0,o,o))
 if(n.Q)m.push(A.fT(o,A.zM(new A.Rp(n.ch,new A.aDh(n),o)),o,o,o,18,80,o))
 return A.fe(B.b8,m,B.o,B.aT,o)},
 $S:185}
@@ -116556,7 +116556,7 @@ case 1:return A.w(q,r)}})
 return A.x($async$Gf,r)},
 P(a){var s,r,q=this,p=null,o=t.p
 o=A.b([A.bY(A.b([A.jY("assets/renewal/icons/3d/zone-location.png",B.G,!1,B.f0,132,p,145),B.fU,B.VY],o),B.u,B.n,B.m,0),B.bU,A.eZ(!1,B.N,!0,A.br(21),A.hi(!1,p,p,p,!0,p,!0,p,B.N3,p,p,q.gaDw(),!1,p,p,p,p,p,A.an(q.ga2L(),p,p,p,B.pG,p,p),p,B.dE,p),B.o,B.h,0,p,p,p,p,p,B.b3),B.b6],o)
-if(!q.w)o.push(A.Ij(!1,0,300,8,270,!1,p,new A.aPe(q),q.ga7x(),!1,16,q.glD(),B.hT,!0,16))
+if(!q.w)o.push(A.Ij(!1,0,300,8,270,!1,p,new A.aPe(q),q.ga7x(),!1,16,q.glD(),B.hT,!0,!0,16))
 s=q.r
 r=s?p:q.gR1()
 o.push(new A.e2(B.d8,p,p,A.aUm(B.MN,A.an(s?"Obteniendo ubicaci\xf3n\u2026":"Usar mi ubicaci\xf3n",p,p,p,p,p,p),r,p),p))
@@ -117054,7 +117054,7 @@ l=A.b([new A.f9(A.bY(A.b([A.ce(p,new A.dB(q.a2M(k),58,p),B.o,p,p,new A.bu(m.b,p,
 m=q.ay
 if(m!=null){m=m.h(0,"address")
 m=A.b([A.cJ(A.bU(A.b([B.rj,B.pe,B.amU,B.l3,A.an(A.i(m==null?"":m),p,p,p,B.akX,p,p)],s),B.a2,B.n,B.m),1)],s)
-if(q.ay.h(0,o)!=null)m.push(A.c_(A.Ij(!1,0,300,8,110,!1,p,p,new A.fy(A.cN(q.ay.h(0,o)),A.cN(q.ay.h(0,"longitude"))),!1,16,p,B.hT,!0,16),p,125))
+if(q.ay.h(0,o)!=null)m.push(A.c_(A.Ij(!1,0,300,8,110,!1,p,p,new A.fy(A.cN(q.ay.h(0,o)),A.cN(q.ay.h(0,"longitude"))),!1,16,p,B.hT,!0,!1,16),p,125))
 B.c.J(l,A.b([B.b6,new A.f9(A.bY(m,B.u,B.n,B.m,0),B.dn,B.h,p,p)],s))}l.push(B.b6)
 l.push(new A.f9(A.bU(A.b([B.amY,B.afi,A.an(A.i(q.ax.h(0,"body")),p,p,p,B.GW,p,p)],s),B.a2,B.n,B.m),B.dn,B.h,p,p))
 m=q.ay
@@ -117298,28 +117298,30 @@ A.at4.prototype={
 $1(a){return A.a0(["address",B.e.a_(A.b3(a.h(0,"address")),0,B.b.aN(A.b3(a.h(0,"address")).length,0,500)),"latitude",A.cN(a.h(0,"latitude")),"longitude",A.cN(a.h(0,"longitude"))],t.N,t.z)},
 $S:654}
 A.XG.prototype={
-P(a){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=this,d=A.br(e.e),c=e.at
-c=c==null?null:A.a0(["latitude",c.a,"longitude",c.b],t.N,t.i)
-s=e.ax==null
-r=e.w&&s
-q=A.b([],t.H7)
-for(p=e.ay,o=p.length,n=t.N,m=t.z,l=0;l<p.length;p.length===o||(0,A.I)(p),++l){k=p[l]
-if(!(J.c(k.h(0,"source"),"demo")||J.c(k.h(0,"is_demo"),!0)||J.c(k.h(0,"demo"),!0))){j=J.cU(k.h(0,"id"))
-i=k.h(0,"latitude")
-h=k.h(0,"longitude")
-g=k.h(0,"folio")
-if(g==null)g="Reporte"
-f=k.h(0,"category")
-if(f==null)f=k.h(0,"description")
-q.push(A.a0(["id",j,"latitude",i,"longitude",h,"title",g,"source","live","icon",A.hq(A.i(f==null?"":f)).a],n,m))}}return A.xZ(d,A.c_(new A.Gz(A.a0(["point",c,"editable",!s,"preview",e.z,"allow3D",r,"initial3D",e.x,"showPointMarker",e.y,"cameraDuration",e.Q,"radiusKm",e.as,"zoom",e.d,"bottomInset",e.f,"controlTop",e.r,"reports",q],n,m),new A.at5(e),new A.at6(e),null),e.c,null),B.ar)}}
+P(a1){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c=this,b=null,a=A.br(c.e),a0=c.ax
+a0=a0==null?b:A.a0(["latitude",a0.a,"longitude",a0.b],t.N,t.i)
+s=c.ay==null
+r=c.w&&s
+q=c.Q
+p=q?c.at:b
+o=A.b([],t.H7)
+for(n=c.ch,m=n.length,l=t.N,k=t.z,j=0;j<n.length;n.length===m||(0,A.I)(n),++j){i=n[j]
+if(!(J.c(i.h(0,"source"),"demo")||J.c(i.h(0,"is_demo"),!0)||J.c(i.h(0,"demo"),!0))){h=J.cU(i.h(0,"id"))
+g=i.h(0,"latitude")
+f=i.h(0,"longitude")
+e=i.h(0,"folio")
+if(e==null)e="Reporte"
+d=i.h(0,"category")
+if(d==null)d=i.h(0,"description")
+o.push(A.a0(["id",h,"latitude",g,"longitude",f,"title",e,"source","live","icon",A.hq(A.i(d==null?"":d)).a],l,k))}}return A.xZ(a,A.c_(new A.Gz(A.a0(["point",a0,"editable",!s,"preview",c.z,"allow3D",r,"initial3D",c.x,"showPointMarker",c.y,"cameraDuration",c.as,"radiusKm",p,"showZoneRadius",q,"zoom",c.d,"bottomInset",c.f,"controlTop",c.r,"reports",o],l,k),new A.at5(c),new A.at6(c),b),c.c,b),B.ar)}}
 A.at5.prototype={
-$2(a,b){var s=this.a.ax
+$2(a,b){var s=this.a.ay
 return s==null?null:s.$1(new A.fy(a,b))},
 $S:655}
 A.at6.prototype={
 $1(a){var s,r,q,p,o
-for(s=this.a,r=s.ay,q=r.length,p=0;p<r.length;r.length===q||(0,A.I)(r),++p){o=r[p]
-if(!(J.c(o.h(0,"source"),"demo")||J.c(o.h(0,"is_demo"),!0)||J.c(o.h(0,"demo"),!0))&&J.cU(o.h(0,"id"))===a){r=s.ch
+for(s=this.a,r=s.ch,q=r.length,p=0;p<r.length;r.length===q||(0,A.I)(r),++p){o=r[p]
+if(!(J.c(o.h(0,"source"),"demo")||J.c(o.h(0,"is_demo"),!0)||J.c(o.h(0,"demo"),!0))&&J.cU(o.h(0,"id"))===a){r=s.CW
 if(r!=null)r.$1(o)
 break}}},
 $S:27}
@@ -117715,7 +117717,7 @@ r=s===this.ch?B.SB:B.Ry
 j.push(new A.fw(1,B.bb,A.bU(A.b([q,B.c5,A.an(n,l,l,l,new A.q(!0,r,l,l,l,l,12,B.ak,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l),l,l)],k),B.u,B.n,B.m),l))}return new A.aS(B.tO,A.bY(j,B.u,B.n,B.m,0),l)},
 aHc(){var s,r,q,p=this,o=null,n=p.wu("Ubicaci\xf3n del incidente",16),m=A.br(14),l=A.br(14),k=p.e,j=k.a.a,i=t.p
 m=A.eZ(!1,B.N,!0,o,A.fP(!1,l,!0,A.c_(new A.aS(B.V9,A.bY(A.b([B.rj,B.fU,A.cJ(A.an(j.length===0?"Centro, Cuautla":j,1,B.ah,o,B.pG,o,o),1),B.MR],i),B.u,B.n,B.m,0),o),48,o),o,!0,o,o,o,o,o,o,o,o,new A.aLv(p),o,o,o,o,o,o,o),B.o,B.h,0,o,o,new A.cT(m,B.f_),o,o,B.b3)
-j=A.Ij(!1,0,300,48,137,!1,o,p.gaat(),p.ax,!1,16,o,B.hT,!0,16)
+j=A.Ij(!1,0,300,48,137,!1,o,p.gaat(),p.ax,!1,16,o,B.hT,!0,!1,16)
 l=A.br(11)
 k=A.cJ(A.bK(o,o,A.JX(!0,o,k,B.XF,!0,o,p.r,o,B.apm,o,200,1,!1,new A.aLw(p),B.agO,o),!1,o,o,!1,o,!1,o,o,o,o,o,o,"Direcci\xf3n del incidente",o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,B.E,o),1)
 s=A.aYp(o,o,B.aeY,B.tO,B.fN,o)
@@ -117780,7 +117782,7 @@ g=h.a
 f=i.a(J.o(J.o(e.x.h(0,"schema"),"properties"),g)).h(0,"title")
 k.push(A.an(A.i(f==null?g:f)+": "+A.i(h.b),d,d,d,d,d,d))}n=A.bU(k,B.u,B.n,B.m)}o=e.a3P(n,1,"description",o,"Descripci\xf3n")
 n=e.e.a.a
-n=e.a3P(A.Ij(!1,0,300,8,106,!1,d,d,e.ax,!1,16,d,B.hT,!0,16),1,"pin",n,"Ubicaci\xf3n")
+n=e.a3P(A.Ij(!1,0,300,8,106,!1,d,d,e.ax,!1,16,d,B.hT,!0,!1,16),1,"pin",n,"Ubicaci\xf3n")
 k=e.at
 i=k.length
 if(i===0)k=B.aam
@@ -118160,7 +118162,7 @@ s.push(A.an(l.ne(l.ay.h(0,i)),j,j,j,B.iC,j,j))
 e=A.bY(A.b([e,B.kZ,A.cJ(A.bU(s,B.a2,B.n,B.m),1),new A.vN(A.i(l.ay.h(0,"status")),j)],f),B.u,B.n,B.m,0)
 s=l.ay.h(0,"address")
 r=A.b([B.N2,B.cj,A.cJ(A.bU(A.b([B.amz,B.c5,A.an(B.e.bK(A.i(s==null?"":s)).length===0?"Ubicaci\xf3n del incidente":A.i(l.ay.h(0,"address")),2,B.ah,j,B.ajz,j,j)],f),B.a2,B.n,B.m),1),B.cj],f)
-if(typeof l.ay.h(0,h)=="number"&&typeof l.ay.h(0,g)=="number")r.push(A.c_(A.Ij(!1,0,300,8,86,!1,j,j,new A.fy(A.cN(l.ay.h(0,h)),A.cN(l.ay.h(0,g))),!0,14,j,B.hT,!0,15),j,135))
+if(typeof l.ay.h(0,h)=="number"&&typeof l.ay.h(0,g)=="number")r.push(A.c_(A.Ij(!1,0,300,8,86,!1,j,j,new A.fy(A.cN(l.ay.h(0,h)),A.cN(l.ay.h(0,g))),!0,14,j,B.hT,!0,!1,15),j,135))
 s=A.bY(r,B.u,B.n,B.m,0)
 r=A.an("Descripci\xf3n",j,j,j,B.ld,j,j)
 q=l.ay.h(0,"description")
