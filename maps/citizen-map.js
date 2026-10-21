@@ -79,7 +79,7 @@
       if (dead) return;
       status.hidden = value === 'ready';
       status.dataset.state = value;
-      if (currentControls) currentControls.hidden = value !== 'ready' || !!options.preview;
+      if (currentControls) currentControls.hidden = value !== 'ready' || !!options.preview || !!options.hideControls;
       message.textContent = value === 'loading' ? 'Cargando mapa...' : 'No se pudo cargar el mapa de OpenFreeMap';
       retry.hidden = value !== 'error';
       handlers.onState?.(value);
@@ -180,11 +180,13 @@
       }
     }
     function apply() {
+      host.classList.toggle('hide-map-controls', !!options.hideControls);
       host.classList.toggle('citizen-map-preview', !!options.preview);
       host.style.setProperty('--map-bottom', `${Math.max(0, options.bottomInset || 0)}px`);
       host.style.setProperty('--control-top', `${Math.max(0, options.controlTop || 8)}px`);
       status.style.top = options.editable ? '76px' : '50%';
       if (!map) return;
+      if (currentControls) currentControls.hidden = !!options.preview || !!options.hideControls || status.dataset.state !== 'ready';
       renderMarkers();
       if (demoLabel) demoLabel.hidden = !(options.reports || []).some(report => report.source === 'demo');
       const point = coordinate(options.point);
@@ -210,7 +212,7 @@
           if (!map.hasImage(id)) map.addImage(id,{width:1,height:1,data:new Uint8Array([0,0,0,0])});
         });
         if (!options.allow3D || options.editable) map.touchZoomRotate.disableRotation();
-        if (options.editable) map.setPadding({top: 43, bottom: 0, left: 0, right: 0});
+
         const controls = node('div', 'citizen-map-controls');
         currentControls = controls; controls.hidden = true;
         for (const [label, text, action] of [

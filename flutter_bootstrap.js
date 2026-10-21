@@ -34,13 +34,13 @@ addEventListener("message", eventListener);
 if (!window._flutter) {
   window._flutter = {};
 }
-_flutter.buildConfig = {"engineRevision":"1527ae0ec577a4ef50e65f6fefcfc1326707d9bf","builds":[{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.a29dda143117.js"}]};
+_flutter.buildConfig = {"engineRevision":"1527ae0ec577a4ef50e65f6fefcfc1326707d9bf","builds":[{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.764775397f10.js"}]};
 
 // A release-specific URL bypasses stale HTTP and legacy Flutter worker entries.
 // The stable build token keeps caching effective between visits to the same release.
 for (const build of _flutter.buildConfig.builds) {
   if (build.mainJsPath) {
-    build.mainJsPath += '?release=3357943597';
+    build.mainJsPath += '?release=3095650428';
   }
 }
 _flutter.loader.load({config: {canvasKitBaseUrl: 'canvaskit/'}});

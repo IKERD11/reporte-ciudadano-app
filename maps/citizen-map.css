@@ -69,3 +69,9 @@
 .citizen-map-preview .citizen-map-attribution {font-size:7px;line-height:10px;min-height:20px;gap:0 3px;padding:1px 2px;}
 .citizen-map-preview .citizen-map-stage {bottom:20px;}
 .citizen-map-preview .citizen-map-status {font-size:9px;padding:3px;}
+
+.citizen-map.hide-map-controls .citizen-map-controls,.citizen-map.hide-map-controls .citizen-map-mode{visibility:hidden;opacity:0;pointer-events:none;}
+.citizen-map[data-mode="consultation"] .citizen-map-controls {bottom:calc(var(--map-bottom) + 121px);transition:bottom 220ms ease,opacity 160ms ease;}
+.citizen-map-attribution {transition:bottom 220ms ease;}
+
+.citizen-map[data-mode="consultation"] .citizen-map-mode {bottom:calc(var(--map-bottom) + 64px);transition:bottom 220ms ease,opacity 160ms ease;}
