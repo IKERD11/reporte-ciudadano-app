@@ -79,7 +79,7 @@
       if (dead) return;
       status.hidden = value === 'ready';
       status.dataset.state = value;
-      if (currentControls) currentControls.hidden = value !== 'ready';
+      if (currentControls) currentControls.hidden = value !== 'ready' || !!options.preview;
       message.textContent = value === 'loading' ? 'Cargando mapa...' : 'No se pudo cargar el mapa de OpenFreeMap';
       retry.hidden = value !== 'error';
       handlers.onState?.(value);
@@ -180,6 +180,7 @@
       }
     }
     function apply() {
+      host.classList.toggle('citizen-map-preview', !!options.preview);
       host.style.setProperty('--map-bottom', `${Math.max(0, options.bottomInset || 0)}px`);
       host.style.setProperty('--control-top', `${Math.max(0, options.controlTop || 8)}px`);
       status.style.top = options.editable ? '76px' : '50%';
@@ -202,7 +203,7 @@
         if (dead || generation !== run) return;
         const canvas = node('div'); canvas.style.cssText = 'position:absolute;inset:0';
         stage.prepend(canvas);
-        map = new library.Map({container: canvas, style: STYLE, center: coordinate(options.point) || CENTER, zoom: options.zoom || 16,
+        map = new library.Map({container: canvas, interactive: !options.preview, style: STYLE, center: coordinate(options.point) || CENTER, zoom: options.zoom || 16,
           pitch: options.allow3D && !options.editable && threeD ? 48 : 0, bearing: threeD ? -18 : 0, maxPitch: options.allow3D && !options.editable ? 85 : 0, attributionControl: false, renderWorldCopies: false,
           dragRotate: !!(options.allow3D && !options.editable), touchPitch: !!(options.allow3D && !options.editable), pitchWithRotate: !!(options.allow3D && !options.editable)});
         listen(map, 'styleimagemissing', ({id}) => {
