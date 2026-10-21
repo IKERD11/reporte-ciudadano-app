@@ -98,6 +98,7 @@
       clearTimeout(timer);
       for (const remove of listeners.splice(0)) remove();
       clearMarkers();
+      currentControls?.remove(); currentControls = null;
       map?.remove(); map = null; lastZone = null;
     }
     function emitPoint(position) {
@@ -111,7 +112,13 @@
       clearMarkers();
       const selected = coordinate(options.point);
       if (selected && options.showPointMarker !== false) {
-        selectedMarker = new global.maplibregl.Marker({color: '#1769ea', draggable: !!options.editable})
+        const markerOptions = {color:'#1769ea',draggable:!!options.editable};
+        if(options.showZoneRadius === true) {
+          const image=node('img','citizen-map-zone-pin'); image.alt='';
+          image.src=new URL('assets/assets/renewal/icons/3d/pin.webp',document.baseURI).href;
+          markerOptions.element=image;markerOptions.anchor='bottom';
+        }
+        selectedMarker = new global.maplibregl.Marker(markerOptions)
           .setLngLat(selected).addTo(map);
         selectedMarker.getElement().setAttribute('aria-label', options.editable ? 'Ubicación seleccionada. Arrastra el marcador para moverla.' : 'Ubicación del incidente');
         const marker = selectedMarker;
@@ -222,7 +229,8 @@
           button.onclick = event => { event.stopPropagation(); action(); }; controls.appendChild(button);
         }
         demoLabel = node('div', 'citizen-map-demo', 'Datos de demostración');
-        stage.append(controls, demoLabel);
+        host.appendChild(controls);
+        stage.appendChild(demoLabel);
         listen(map, 'click', event => {
           if (!options.editable) return;
           if (!selectedMarker) {

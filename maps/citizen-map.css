@@ -75,3 +75,10 @@
 .citizen-map-attribution {transition:bottom 220ms ease;}
 
 .citizen-map[data-mode="consultation"] .citizen-map-mode {bottom:calc(var(--map-bottom) + 64px);transition:bottom 220ms ease,opacity 160ms ease;}
+
+/* All incident controls share the same vertical centre line. */
+.citizen-map[data-mode="consultation"] .citizen-map-controls {right:26px;}
+.citizen-map-zone-pin {width:48px;height:48px;object-fit:contain;}
+
+.citizen-map[data-mode="consultation"] .citizen-map-button {font-size:22px;color:#303330;}
+.citizen-map[data-mode="consultation"] .citizen-map-button:first-child {border-bottom:1px solid #e8ecf0;}
