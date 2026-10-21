@@ -37,10 +37,11 @@
   }
   function create(host, initial, handlers = {}) {
     let options = initial, map, selectedMarker, markers = [], listeners = [];
-    let dead = false, generation = 0, timer, threeD = false;
+    let dead = false, generation = 0, timer, threeD = !!(initial.initial3D && initial.allow3D && !initial.editable);
     let lastZone = null;
     let lastPoint = null, markerListeners = [], demoLabel, currentControls, failed = false;
     host.className = 'citizen-map';
+    host.dataset.mode = initial.allow3D && !initial.editable ? 'consultation' : 'picker';
     const stage = node('div', 'citizen-map-stage');
     const attribution = node('div', 'citizen-map-attribution');
     for (const [text, href] of [
@@ -57,12 +58,29 @@
     const message = node('span');
     const retry = node('button', '', 'Reintentar'); retry.type = 'button';
     status.append(message, retry);
+    for (const [index, icon] of ['robbery','paw','cone','car'].entries()) {
+      const decoration=node('img', `citizen-map-fallback-marker fallback-${index}`);
+      decoration.alt=''; decoration.setAttribute('aria-hidden','true');
+      decoration.src=new URL(`assets/assets/renewal/icons/3d/${icon}.webp`, document.baseURI).href;
+      status.appendChild(decoration);
+    }
     host.replaceChildren(stage, attribution);
+    if (initial.allow3D && !initial.editable) {
+          const toggle = node('button', 'citizen-map-mode', threeD ? '3D' : '2D'); toggle.type = 'button';
+          toggle.title = 'Alternar vista 2D y 3D'; toggle.setAttribute('aria-label', toggle.title); toggle.setAttribute('aria-pressed', String(threeD));
+          toggle.onclick = event => {
+            event.stopPropagation(); threeD = !threeD; setDimension();
+            map?.easeTo({pitch: threeD ? 48 : 0, bearing: threeD ? -18 : 0, duration: global.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 0 : 650});
+            toggle.textContent = threeD ? '3D' : '2D'; toggle.setAttribute('aria-pressed', String(threeD));
+          }; host.appendChild(toggle);
+        }
+
     function state(value) {
       if (dead) return;
       status.hidden = value === 'ready';
+      status.dataset.state = value;
       if (currentControls) currentControls.hidden = value !== 'ready';
-      message.textContent = value === 'loading' ? 'Cargando mapa…' : 'No se pudo cargar el mapa.';
+      message.textContent = value === 'loading' ? 'Cargando mapa...' : 'No se pudo cargar el mapa de OpenFreeMap';
       retry.hidden = value !== 'error';
       handlers.onState?.(value);
     }
@@ -92,7 +110,7 @@
       if (!map) return;
       clearMarkers();
       const selected = coordinate(options.point);
-      if (selected) {
+      if (selected && options.showPointMarker !== false) {
         selectedMarker = new global.maplibregl.Marker({color: '#1769ea', draggable: !!options.editable})
           .setLngLat(selected).addTo(map);
         selectedMarker.getElement().setAttribute('aria-label', options.editable ? 'Ubicación seleccionada. Arrastra el marcador para moverla.' : 'Ubicación del incidente');
@@ -110,12 +128,13 @@
         const title = `${report.title || 'Reporte'}${demo ? ' · Reporte de demostración' : ''}`;
         element.setAttribute('aria-label', title); element.title = title;
         element.dataset.demo = String(demo);
+        element.dataset.icon = report.icon || 'more';
         const image = node('img'); image.alt = '';
         // Artwork is supplied by Flutter's existing category mapping, never by remote report data.
-        image.src = new URL(`assets/assets/renewal/icons/3d/${/^[a-z-]+$/.test(report.icon) ? report.icon : 'more'}.webp`, document.baseURI).href;
+        image.src = new URL(`assets/assets/renewal/icons/3d/${/^[a-z-]+$/.test(report.icon) ? report.icon : 'more'}.${report.icon === 'mourning' ? 'png' : 'webp'}`, document.baseURI).href;
         element.appendChild(image);
         element.onclick = event => { event.stopPropagation(); if (!dead) handlers.onReportSelected?.(report.id); };
-        const marker = new global.maplibregl.Marker({element}).setLngLat(position).addTo(map);
+        const marker = new global.maplibregl.Marker({element, anchor: 'bottom', offset: [0, -7]}).setLngLat(position).addTo(map);
         element.setAttribute('aria-label', title);
         markers.push(marker);
       }
@@ -126,7 +145,7 @@
         const before = map.getStyle().layers.find(layer => layer.type === 'symbol' && layer.layout?.['text-field'])?.id;
         map.addLayer({id: BUILDINGS, type: 'fill-extrusion', source: 'openmaptiles', 'source-layer': 'building', minzoom: 14,
           layout: {visibility: threeD ? 'visible' : 'none'},
-          paint: {'fill-extrusion-color': '#b9ccd5', 'fill-extrusion-height': ['coalesce', ['get', 'render_height'], ['get', 'height'], 6],
+          paint: {'fill-extrusion-color': ['interpolate', ['linear'], ['zoom'], 14, '#d7e3e8', 17, '#b9ccd5'], 'fill-extrusion-height': ['coalesce', ['get', 'render_height'], ['get', 'height'], 6],
             'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], ['get', 'min_height'], 0], 'fill-extrusion-opacity': 0.72}}, before);
       }
       if (map.getLayer(BUILDINGS)) map.setLayoutProperty(BUILDINGS, 'visibility', threeD ? 'visible' : 'none');
@@ -168,7 +187,7 @@
       renderMarkers();
       if (demoLabel) demoLabel.hidden = !(options.reports || []).some(report => report.source === 'demo');
       const point = coordinate(options.point);
-      if (point && JSON.stringify(point) !== JSON.stringify(lastPoint)) map.easeTo({center: point, duration: 300});
+      if (point && JSON.stringify(point) !== JSON.stringify(lastPoint)) map.easeTo({center: point, zoom: options.zoom || map.getZoom(), duration: global.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 0 : (options.cameraDuration ?? 300)});
       lastPoint = point;
       updateZone();
       map.resize();
@@ -184,12 +203,12 @@
         const canvas = node('div'); canvas.style.cssText = 'position:absolute;inset:0';
         stage.prepend(canvas);
         map = new library.Map({container: canvas, style: STYLE, center: coordinate(options.point) || CENTER, zoom: options.zoom || 16,
-          pitch: options.allow3D && !options.editable && threeD ? 55 : 0, bearing: 0, maxPitch: options.allow3D && !options.editable ? 65 : 0, attributionControl: false, renderWorldCopies: false,
-          dragRotate: false, touchPitch: false, pitchWithRotate: false});
+          pitch: options.allow3D && !options.editable && threeD ? 48 : 0, bearing: threeD ? -18 : 0, maxPitch: options.allow3D && !options.editable ? 85 : 0, attributionControl: false, renderWorldCopies: false,
+          dragRotate: !!(options.allow3D && !options.editable), touchPitch: !!(options.allow3D && !options.editable), pitchWithRotate: !!(options.allow3D && !options.editable)});
         listen(map, 'styleimagemissing', ({id}) => {
           if (!map.hasImage(id)) map.addImage(id,{width:1,height:1,data:new Uint8Array([0,0,0,0])});
         });
-        map.touchZoomRotate.disableRotation();
+        if (!options.allow3D || options.editable) map.touchZoomRotate.disableRotation();
         if (options.editable) map.setPadding({top: 43, bottom: 0, left: 0, right: 0});
         const controls = node('div', 'citizen-map-controls');
         currentControls = controls; controls.hidden = true;
@@ -198,15 +217,6 @@
         ]) {
           const button = node('button', 'citizen-map-button', text); button.type = 'button'; button.title = label; button.setAttribute('aria-label', label);
           button.onclick = event => { event.stopPropagation(); action(); }; controls.appendChild(button);
-        }
-        if (options.allow3D && !options.editable) {
-          const toggle = node('button', 'citizen-map-button', threeD ? '2D' : '3D'); toggle.type = 'button';
-          toggle.title = 'Alternar vista 2D y 3D'; toggle.setAttribute('aria-label', toggle.title); toggle.setAttribute('aria-pressed', String(threeD));
-          toggle.onclick = event => {
-            event.stopPropagation(); threeD = !threeD; setDimension();
-            map.easeTo({pitch: threeD ? 55 : 0, bearing: 0, zoom: threeD ? Math.max(15.5, map.getZoom()) : map.getZoom(), duration: 450});
-            toggle.textContent = threeD ? '2D' : '3D'; toggle.setAttribute('aria-pressed', String(threeD));
-          }; controls.appendChild(toggle);
         }
         demoLabel = node('div', 'citizen-map-demo', 'Datos de demostración');
         stage.append(controls, demoLabel);
