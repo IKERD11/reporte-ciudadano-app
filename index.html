@@ -1,21 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <base href="/reporte-ciudadano-app/">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Piloto de Reporte Ciudadano para Cuautla, Morelos.">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="theme-color" content="#12685d">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="vendor/maplibre-gl-4.7.1/maplibre-gl.css">
-  <link rel="stylesheet" href="maps/citizen-map.4c896179d781.css">
-  <script src="maps/citizen-map.4523173106f3.js"></script>
-  <script src="citizen-push.js"></script>
-  <title>Reporte Ciudadano · Cuautla</title>
+  <head>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuautla Segura</title>
+    
+    <script>
+    // Retire only the previous Flutter offline worker when replacing the web entry.
+    if ("serviceWorker" in navigator) navigator.serviceWorker.getRegistrations().then(async registrations => {
+      const controlledByFlutter = navigator.serviceWorker.controller?.scriptURL.includes("flutter_service_worker")
+      await Promise.all(registrations.filter(r => r.active?.scriptURL.includes("flutter_service_worker")).map(r => r.unregister()))
+      if (controlledByFlutter) location.reload()
+    })
+  </script>
+  <meta name="description" content="Reportes ciudadanos, seguimiento y alertas de la comunidad de Cuautla.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/reporte-ciudadano-app/favicon.svg">
+  <meta property="og:title" content="Cuautla Segura">
+  <meta property="og:description" content="Reportes ciudadanos, seguimiento y alertas de la comunidad de Cuautla.">
+  <script type="module" crossorigin src="/reporte-ciudadano-app/assets/index-BrQvdgVx.js"></script>
+  <link rel="stylesheet" crossorigin href="/reporte-ciudadano-app/assets/index-BkMNMaH8.css">
 </head>
-<body>
-  <script src="flutter_bootstrap.747151398160.js" async></script>
-</body>
+  <body>
+    
+    <div id="root"></div>
+    
+  </body>
 </html>

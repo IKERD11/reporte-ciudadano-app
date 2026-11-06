@@ -33,7 +33,7 @@ self.addEventListener("notificationclick", (event) => {
       .matchAll({ type: "window", includeUncontrolled: true })
       .then((list) => {
         for (const client of list) {
-          if ("focus" in client && client.url.startsWith(self.registration.scope)) {
+          if ("focus" in client) {
             client.navigate(target.href)
             return client.focus()
           }
